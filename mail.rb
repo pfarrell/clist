@@ -1,3 +1,2 @@
 require 'gmailer'
-data = File.read(ARGV[3])
-Gmailer.mail 'txteor', 'password', ARGV[0], 'txteor@gmail.com', 'New Craigslist Posting', data
+Gmailer.mail ARGV[0], ARGV[1], ARGV[2], ARGV[3], ARGV[4], ARGV[5]
