@@ -12,7 +12,7 @@ mv output/curr output/last
 
 curl "$1" > output/curr
 
-diff output/curr output/last | grep -v '^>' | sed -e 's:^<[  ]*::g' | grep '^<a' > output/diff 
+diff output/curr output/last | grep -v '^>' | sed -e 's:^<[   ]*::g' | grep '^<a' | sed -e 's:<a href="\(.*\)">\(.*\)</a>:\2\: \1:g' > output/diff 
 
 if [ -s "output/diff" ];
 then
