@@ -17,7 +17,6 @@ mv output/curr output/last
 curl -s "$remote_url" > output/curr
 
 diff output/curr output/last | grep -v '^>' | sed -e 's:^<[   ]*::g' | grep '^<a' | sed -e 's:<a href="\(.*\)">\(.*\)</a>:\1\ \2:g' > output/diff 
-diff output/curr output/last | grep -v '^>' | sed -e 's:^<[   ]*::g' | grep '^<a' | sed -e 's:<a href="\(.*\)">\(.*\)</a>:\1\ \2:g' 
 
 if [ -s "output/diff" ];
 then
