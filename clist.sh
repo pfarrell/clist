@@ -4,17 +4,17 @@
 
 if [ ! -f "output/curr" ];
 then
-  echo 'initing new'
   curl "$1" > output/curr
 fi
 
 mv output/curr output/last
 
-curl "$1" > output/curr
+curl -s "$1" > output/curr
 
 diff output/curr output/last | grep -v '^>' | sed -e 's:^<[   ]*::g' | grep '^<a' | sed -e 's:<a href="\(.*\)">\(.*\)</a>:\2\: \1:g' > output/diff 
 
 if [ -s "output/diff" ];
 then
+  diff output/curr output/last | grep '^<' | sed -e 's:^<::g' >> output/history
   ruby ./mail.rb '3172813881@txt.att.net', 'txteor@gmail.com', 'New Craigslist Posting', 'output/diff'
 fi
